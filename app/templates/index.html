@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenWorldTour</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">OpenWorldTour</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Головна</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/booked_tours">Заброньовані тури</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add_tour">Додати тур</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        {% for tour in tours %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename=tour.image) }}" class="card-img-top" alt="Зображення туру">
+                <div class="card-body">
+                    <h5 class="card-title">{{ tour.title }}</h5>
+                    <p class="card-text">{{ tour.description }}</p>
+                    <a href="{{ url_for('view_tour', tour_id=tour.id) }}" class="btn btn-primary">Деталі</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<footer class="bg-light p-3 text-center mt-4">
+    <p>&copy; 2024 OpenWorldTour. Усі права захищено. OpenWorldTour - ваш провідник у світі захопливих подорожей та вражень. З нами кожна подорож стає незабутньою пригодою!</p>
+</footer>
+</body>
+</html>
